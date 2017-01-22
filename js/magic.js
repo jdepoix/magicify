@@ -1,23 +1,47 @@
 function DragGestureListener(element, handler) {
 	var self = this;
 
+  self.originX = 0;
+  self.originY = 0;
+
   self.stopListening = function () {
-      element.onmousemove = undefined;
+      element.onmousemove = element.ontouchmove = undefined;
+      self.originX = self.originY = 0;
   };
 
-  self.startListening = function () {
-    element.onmousemove = function (event) {
+  self.startListening = function (initialEvent) {
+    if (initialEvent.touches && initialEvent.touches.length <= 1) {
+      self.originX = initialEvent.touches[0].clientX;
+      self.originY = initialEvent.touches[0].clientY;
+    } else {
+      self.originX = initialEvent.clientX;
+      self.originY = initialEvent.clientY;
+    }
+
+    element.onmousemove = element.ontouchmove = function (event) {
     	if (event.buttons != null && event.buttons != 1) {
       	self.stopListening();
       } else {
-        handler(event);
+        if (event.touches && initialEvent.touches.length <= 1) {
+          var movementX = self.originX - event.touches[0].clientX;
+          var movementY = self.originY - event.touches[0].clientY;
+          self.originX = event.touches[0].clientX;
+          self.originY = event.touches[0].clientY;
+        } else {
+          var movementX = self.originX - event.clientX;
+          var movementY = self.originY - event.clientY;
+          self.originX = event.clientX;
+          self.originY = event.clientY;
+        }
+
+        handler(movementX, movementY);
       }
     };
   };
 
   self.initListener = function () {
-  	element.onmouseup = self.stopListening;
-		element.onmousedown = self.startListening;
+  	element.onmouseup = element.ontouchend = self.stopListening;
+		element.onmousedown = element.ontouchstart = self.startListening;
   };
 
   self.initListener();
@@ -42,15 +66,23 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
     if (self.baseImage) self.baseImage.onload = self._initScene;
     if (self.overlayImage) self.overlayImage.onload = self.render;
 
-    new DragGestureListener(canvas, function (event) {
-      self.moveX(-event.movementX);
-      self.moveY(-event.movementY);
+    new DragGestureListener(canvas, function (movementX, movementY) {
+      self.moveX(movementX);
+      self.moveY(movementY);
+
+      if (self.baseImage) {
+        event.preventDefault();
+      }
     });
 
     canvas.onwheel = function (event) {
       self.zoom(event.deltaY * 0.5);
       event.preventDefault();
-    }
+    };
+
+    canvas.ongesturechange = function (event) {
+      console.log(event);
+    };
   }
 
   self.render = function () {
@@ -154,8 +186,13 @@ function ImageUploadingManager(fileInputElement, fileUploadedHandler) {
 function init() {
   var canvas = document.getElementById('imageCropper');
 
-  canvas.width = window.innerWidth / 3;
-  canvas.height = window.innerWidth / 3;
+  if (window.matchMedia('only screen and (max-width: 768px)').matches) {
+    canvas.width = window.innerWidth - 32;
+    canvas.height = window.innerWidth - 32;
+  } else {
+    canvas.width = window.innerWidth / 3;
+    canvas.height = window.innerWidth / 3;
+  }
 
   var overlay = new Image();
   var imageCanvas = new OverlayedCanvasImage(

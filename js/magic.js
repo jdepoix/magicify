@@ -153,6 +153,11 @@ function ImageUploadingManager(fileInputElement, fileUploadedHandler) {
 
 function init() {
   var canvas = document.getElementById('imageCropper');
+
+  canvas.width = window.innerWidth / 3;
+  canvas.height = window.innerWidth / 3;
+
+
   var overlay = new Image();
   var imageCanvas = new OverlayedCanvasImage(
     canvas,

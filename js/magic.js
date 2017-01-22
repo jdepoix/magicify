@@ -1,12 +1,12 @@
 function DragGestureListener(element, handler) {
-	var self = this;
+  var self = this;
 
   self.originX = 0;
   self.originY = 0;
 
   self.stopListening = function () {
-      element.onmousemove = element.ontouchmove = undefined;
-      self.originX = self.originY = 0;
+    element.onmousemove = element.ontouchmove = undefined;
+    self.originX = self.originY = 0;
   };
 
   self.startListening = function (initialEvent) {
@@ -40,15 +40,15 @@ function DragGestureListener(element, handler) {
   };
 
   self.initListener = function () {
-  	element.onmouseup = element.ontouchend = self.stopListening;
-		element.onmousedown = element.ontouchstart = self.startListening;
+    element.onmouseup = element.ontouchend = self.stopListening;
+    element.onmousedown = element.ontouchstart = self.startListening;
   };
 
   self.initListener();
 }
 
 function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
-	var self = this;
+  var self = this;
 
   self.construct = function () {
     // properties
@@ -86,7 +86,7 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
   }
 
   self.render = function () {
-	  self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
+    self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
 
     if (self.baseImage) {
       self.context.drawImage(
@@ -117,7 +117,7 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
   };
 
   self.moveX = function (offset) {
-  	self.imageX += offset * self.scalingSpeed;
+    self.imageX += offset * self.scalingSpeed;
     self.render();
   };
 
@@ -129,8 +129,8 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
   self.zoom = function (offset) {
     offset *= self.scalingSpeed;
 
-  	if (self.imageWidth - offset > 20 && self.imageHeight - offset > 20) {
-    	self.imageX += offset;
+    if (self.imageWidth - offset > 20 && self.imageHeight - offset > 20) {
+      self.imageX += offset;
       self.imageY += offset;
       self.imageWidth -= offset * 2;
       self.imageHeight -= offset * 2;
@@ -140,18 +140,18 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
   };
 
   self.download = function () {
-  	return self.canvas.toDataURL('png');
+    return self.canvas.toDataURL('png');
   }
 
   self._initScene = function () {
     if (self.baseImage.width >= self.baseImage.height) {
-    	self.imageX = (self.baseImage.width - self.baseImage.height) / 2;
+      self.imageX = (self.baseImage.width - self.baseImage.height) / 2;
       self.imageY = 0;
       self.imageWidth = self.baseImage.height;
       self.imageHeight = self.baseImage.height;
       self.scalingSpeed = self.baseImage.width * 0.001;
     } else {
-    	self.imageX = 0;
+      self.imageX = 0;
       self.imageY = (self.baseImage.height - self.baseImage.width) / 2;
       self.imageWidth = self.baseImage.width;
       self.imageHeight = self.baseImage.width;
@@ -206,7 +206,7 @@ function init() {
     document.getElementById('imageUpload').click();
   }
 
-	new ImageUploadingManager(
+  new ImageUploadingManager(
     document.getElementById('imageUpload'),
     function (fileReader) {
       var image = new Image();

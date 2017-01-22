@@ -3,14 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Magicify your Images!</title>
+    <link rel="stylesheet" href="style/magic.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
     <script src="js/magic.js"></script>
   </head>
   <body>
     <div id="container">
-      <input id="imageUpload" type="file" accept="image/*" />
-      <canvas id="imageCropper" width="400" height="400"></canvas>
+      <h1 class="slide-in">Magicify your Image!</h1>
+      <canvas id="imageCropper" class="slide-in" width="400" height="400"></canvas>
+      <button id="upload">upload</button>
       <button id="download">download</button>
+
+      <input id="imageUpload" type="file" accept="image/*" style="display: none;" />
       <a id="hiddenDownloadAnchor" style="display: none;" href="" download="magicified.png">download</a>
     </div>
+
+    <!-- <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
   </body>
 </html>

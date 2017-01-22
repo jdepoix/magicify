@@ -9,6 +9,8 @@ body {
 }
 
 h1 {
+  margin: 0;
+  margin-bottom: 20px;
   font-size: 5em;
   text-align: center;
 }

@@ -157,7 +157,6 @@ function init() {
   canvas.width = window.innerWidth / 3;
   canvas.height = window.innerWidth / 3;
 
-
   var overlay = new Image();
   var imageCanvas = new OverlayedCanvasImage(
     canvas,
@@ -174,22 +173,22 @@ function init() {
     document.getElementById('imageUpload'),
     function (fileReader) {
       var image = new Image();
-      var imageCanvas = new OverlayedCanvasImage(
+      imageCanvas = new OverlayedCanvasImage(
         canvas,
         image,
         overlay
       );
 
-      document.getElementById('download').onclick = function () {
-        var hiddenDownload = document.getElementById('hiddenDownloadAnchor');
-        hiddenDownload.href = imageCanvas.download();
-        hiddenDownload.click();
-      }
-
       overlay.src = 'img/overlay.png';
       image.src = fileReader.result;
     }
   );
+
+  document.getElementById('download').onclick = function () {
+    var hiddenDownload = document.getElementById('hiddenDownloadAnchor');
+    hiddenDownload.href = imageCanvas.download();
+    hiddenDownload.click();
+  }
 }
 
 window.onload = init;

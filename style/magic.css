@@ -32,6 +32,12 @@ h1 {
   color: #292929;
   border: none;
   margin: 20px;
+  transition: transform .2s, opacity .2s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  opacity: 0.5;
 }
 
 #imageCropper {

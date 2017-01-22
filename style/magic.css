@@ -1,10 +1,10 @@
 body {
   font-family: Roboto;
   background-color: #292929;
-  color: white;
+  color: #F8F9FB;
 }
 
-.button, h1 {
+.button, h1, #shareHeader {
   font-family: Pacifico;
 }
 
@@ -15,18 +15,46 @@ h1 {
   text-align: center;
 }
 
-#buttonContainer, #shareButtonsContainer {
+#shareSection {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#shareHeader {
+  font-size: 2em;
+}
+
+.share-header-container {
+  height: 40px;
+}
+
+.break-line-container {
+  width: 100%;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.break-line {
+  background-color: #F8F9FB;
+  height: 2px;
+  width: 100%;
+  border-radius: 1px;
+}
+
+.centered-content {
   display: flex;
   justify-content: center;
 }
 
-#shareButtonsContainer {
-  margin-top: 20px;
+.centered-content-column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .button {
   width: 300px;
-  background-color: white;
+  background-color: #F8F9FB;
   border-radius: 10px;
   font-size: 3em;
   color: #292929;
@@ -43,7 +71,7 @@ h1 {
 #imageCropper {
   display: block;
   margin: auto;
-  border: 5px solid white;
+  border: 5px solid #F8F9FB;
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -85,6 +113,19 @@ h1 {
         transform: translateX(0px) translateZ(0);
         opacity: 1;
     }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn .7s linear;
 }
 
 .slide-in {

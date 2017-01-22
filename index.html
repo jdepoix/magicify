@@ -12,15 +12,20 @@
     <div id="container">
       <h1 class="slide-in">Magicify your Image!</h1>
       <canvas id="imageCropper" class="slide-in"></canvas>
-      <div id="buttonContainer">
+      <div id="buttonContainer" class="centered-content">
         <button class="button slide-in-left" id="upload">Upload</button>
         <button class="button slide-in-right" id="download">Download</button>
       </div>
       <input id="imageUpload" type="file" accept="image/*" style="display: none;" />
       <a id="hiddenDownloadAnchor" style="display: none;" href="" download="magicified.png">download</a>
     </div>
+    <div id="shareSection" class="centered-content">
+      <div class="break-line-container centered-content-column slide-in-left"><div class="break-line"></div></div>
+      <div class="share-header-container centered-content-column fade-in"><span id="shareHeader">Share</span></div>
+      <div class="break-line-container centered-content-column slide-in-right"><div class="break-line"></div></div>
+    </div>
     <!-- http://sharingbuttons.io/ -->
-    <div id="shareButtonsContainer" class="slide-in-left">
+    <div id="shareButtonsContainer" class="centered-content slide-in-left">
       <!-- Sharingbutton Facebook -->
       <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fmagicmilesmusic.com%2Fmagicify" target="_blank" aria-label="Facebook">
         <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">

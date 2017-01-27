@@ -1,3 +1,8 @@
+.link-to-main-page {
+  text-decoration: none;
+  color: #F8F9FB;
+}
+
 body {
   font-family: Roboto;
   background-color: #292929;
@@ -75,6 +80,10 @@ h1 {
 .button:hover {
   transform: scale(1.1);
   opacity: 0.5;
+}
+
+.invisible {
+  opacity: 0 !important;
 }
 
 #imageCropper {

@@ -8,6 +8,10 @@ body {
   font-family: Pacifico;
 }
 
+.no-break {
+  white-space: nowrap;
+}
+
 h1 {
   margin: 0;
   margin-bottom: 20px;

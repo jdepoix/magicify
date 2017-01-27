@@ -102,6 +102,8 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
       );
     }
     if (self.overlayImage) {
+      self.context.save();
+      if (self.baseImage) self.context.globalAlpha = 0.5;
       self.context.drawImage(
       	self.overlayImage,
         0,
@@ -113,6 +115,7 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
         self.canvas.width,
         self.canvas.height
       );
+      self.context.restore();
     }
   };
 

@@ -64,7 +64,7 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
 
     // listeners
     if (self.baseImage) self.baseImage.onload = self._initScene;
-    if (self.overlayImage) self.overlayImage.onload = self.render;
+    if (self.overlayImage) self.overlayImage.onload = self._initialRender;
 
     new DragGestureListener(canvas, function (movementX, movementY) {
       self.moveX(movementX);
@@ -79,10 +79,14 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
       self.zoom(event.deltaY * 0.5);
       event.preventDefault();
     };
+  }
 
-    canvas.ongesturechange = function (event) {
-      console.log(event);
-    };
+  self._initialRender = function () {
+    if (self.canvas.classList.contains('invisible')) {
+      self.canvas.classList.remove('invisible');
+      self.canvas.classList.add('slide-in');
+    }
+    self.render();
   }
 
   self.render = function () {
@@ -161,7 +165,7 @@ function OverlayedCanvasImage(canvas, baseImage, overlayImage) {
       self.scalingSpeed = self.baseImage.height * 0.001;
     }
 
-    self.render();
+    self._initialRender();
   };
 
 	self.construct();
